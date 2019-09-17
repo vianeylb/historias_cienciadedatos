@@ -1,7 +1,7 @@
 ---
 title: "**Historias con Impacto a Través de la Ciencia de Datos**"
 author: "Vianey Leos(-)Barajas <br />  <br /> <br /> *Depts of Forestry & Environmental Resources and Statistics* <br /> North Carolina State University"
-date: ''
+date: 'http://bit.ly/DataStories_NCSU'
 output:
   xaringan::moon_reader:
     lib_dir: libs
