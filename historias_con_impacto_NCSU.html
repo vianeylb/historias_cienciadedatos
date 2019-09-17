@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Historias con Impacto a Través de la Ciencia de Datos</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Vianey Leos(-)Barajas       Depts of Forestry &amp; Environmental Resources and Statistics   North Carolina State University" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# <strong>Historias con Impacto a Través de la Ciencia de Datos</strong>
+### Vianey Leos(-)Barajas <br /> <br /> <br /> <em>Depts of Forestry &amp; Environmental Resources and Statistics</em> <br /> North Carolina State University
+
+---
+
+class: top, center, middle
+
+
+
+
+# What is data science? 
+
+ Maybe a combination of Statistics, Computer Science and Mathematics? 
+
+
+--
+
+ What about machine learning and big data?
+
+--
+
+ In this talk we'll ignore any pre-conceived notions of what data science is and focus on:  
+
+--
+
+## ** &lt;&lt; how to tell stories with data &gt;&gt; **
+
+
+
+---
+class: top
+# Outline: 
+
+
+.center[
+**What is the question of interest?**
+]
+
+--
+
+.center[
+**What type of data do we need to collect?** 
+]
+
+--
+
+.center[
+**What methodology should we use?** 
+]
+
+--
+
+.center[
+**Interpreting our results**
+]
+
+--
+
+.center[
+**The grand finale.**
+]
+
+
+---
+class: inverse, center, middle
+
+# Story Time
+
+
+---
+class: top, middle
+
+# What Story Do We Want Tell? 
+
+This is usually the easier part -- there are so many cool questions we can try to answer with data! 
+
+_Some examples_: 
+
+- ** How do white sharks react to tourism boats? **
+
+.center[
+&lt;img src="https://media.giphy.com/media/aVcLhnUF0tAB2/giphy.gif" width="200" height="100" /&gt;
+]
+
+- ** How can we personalize (clothing/videos/products)? ** Check out StitchFix's algorithms team. 
+
+.center[
+&lt;img src="https://media.giphy.com/media/Ig59V6d8nU4Fi/giphy.gif" width="200" height="150" /&gt;
+]
+
+
+---
+class: top, left
+
+# How do we tell our story with data? 
+
+One of the hardest parts and one of the most important steps. **Domain expertise comes in!** [*]
+
+1. Quantifying the behavior we want to observe. Evaluating and re-evaluating. 
+
+2. Is it feasible to collect that information? 
+
+3. What information can we not collect? 
+
+4. Re-examining our original question and re-formulating it with what's possible. 
+
+
+_______________________________________________
+
+--
+
+_Data are objective_ `\(\rightarrow\)` **FALSE** 
+
+We make decisions about what data to use to answer questions, decisions about how to collect the data, etc. Let's fully embrace subjectivity in every step of the process. 
+
+
+--
+
+.footnote[[*]Domain expertise is a must. Not using it can lead to extremely irresponsible practices.]
+
+
+---
+
+class: top
+
+# Quantifying the behavior we want to observe.
+
+.center[
+`\(\rightarrow\)` `This sets in motion the type of analysis that will be used.` 
+]
+
+For instance, let's look at this question: 
+
+.center[
+** How do white sharks react to tourism boats? **
+]
+
+- What do we mean by _react_?
+
+- We need to quantify their movements. 
+
+- Data (location) is collected approximately every 5-minutes. 
+
+When we talk about 'white shark' behaviors for this project, we mean "movement patterns observed at a 5-minute temporal scale"
+
+--
+
+Even the phrase "movement patterns" can be and is quite subjective. 
+
+---
+class: top, inverse
+
+# White Shark Movements
+
+.center[
+&lt;img src="sarika_indtracks.gif" /&gt;
+]
+
+Data collected by Alison Towner.
+
+---
+class: top, inverse
+
+# Bull Shark Movements
+
+Work with [Pelagios Kakunjá](http://pelagioskakunja.org/). 
+
+![](historias_con_impacto_NCSU_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+
+
+For more shark work: check out [MigraMar](http://migramar.org/hi/en/) and [Alex Hearn](http://migramar.org/hi/en/assembly-members/hearn/). 
+
+---
+class: top, left
+
+# Data Organization and Manipulation
+
+**Organization**
+
+Organizing and structuring your data set is one of the most important aspects in any project. 
+
+.center[
+&lt;img src="data_org.JPG"/&gt;
+]
+
+
+**Manipulation**
+
+Writing scripts to go from the _raw_ data set to the formatted data set for analysis. In `R`, take a look at the [tidyverse](https://www.tidyverse.org/). 
+
+
+---
+class: top, center
+
+# What Next? 
+
+Once we've quantified the question we'd like to answer and collected data, exploratory data analysis can be done. 
+
+.center[
+**Lots and lots of plots.** 
+]
+
+
+Depending on what our story is so far, we'll attempt to match our data story with an appropriate model. 
+
+
+.footnote[Keep in mind, what plots we make and what models we choose is also be subjective. We'll embrace it.]
+
+---
+background-position: 100%
+class: top, center, inverse
+
+# What models are seen as...
+
+![](https://media.giphy.com/media/12NUbkX6p4xOO4/giphy.gif)
+
+
+---
+background-position: 100%
+class: top, center inverse
+
+# How we should think of models...
+
+![](https://media.giphy.com/media/25KEhzwCBBFPb79puo/giphy.gif)
+
+
+---
+
+#Our old friend: Simple Linear Regression 
+
+Basic setup: 
+
+$$ y = \beta_0 + \beta_1x + \epsilon $$ 
+
+$$ \epsilon \sim N(0, \sigma^2) $$
+
+
+--
+
+
+Altogether, we have
+
+$$ f(y|x) \sim N(\beta_0 + \beta_1x, \sigma^2) $$
+
+--
+
+Intrepretation of the parameters `\(\beta_0, \beta_1, \sigma^2\)`: 
+
+- `\(\beta_0\)` = the expected value of y when x=0
+
+- `\(\beta_1\)` = the expected change in y when you increase the value of x by 1
+
+- `\(\sigma^2\)` = a measure of the variability around the mean ( `\(\beta_0 + \beta_1x\)` )
+
+---
+
+background-position: 100%
+class: top
+
+# The story of SLR
+
+**What does it actually mean?**
+
+.center[
+&lt;image src = "normals.png" width="500" height="400" /&gt;
+]
+
+The means under different values of `\(x\)` are connected (they're friends on a line.)
+
+
+---
+
+# SLR is an abstract concept
+
+Like all statistical models. One of the best ways to learn about a model is to simulate from it. 
+
+.pull-left[
+
+### Deterministic (fixed, unknowns): 
+
+- `\(\beta_0, \beta_1\)`
+
+- `\(\sigma^2\)`
+
+]
+
+.pull-right[
+
+### Stochastic (drawn from a distribution): 
+
+- `\(\epsilon \sim N(0, \sigma^2)\)`
+
+]
+
+
+```r
+#R Code
+set.seed(17)
+
+beta0 &lt;- 1
+beta1 &lt;- 2
+std.dev &lt;- 5
+
+x &lt;- rt(n = 150, df = 3)
+y &lt;- beta0 + beta1*x + rnorm(n=150, mean = 0, sd=std.dev)
+```
+
+---
+class: middle
+**Simulating Data from a SLR**
+
+
+
+```r
+#R Code
+set.seed(17)
+
+beta0 &lt;- 1
+beta1 &lt;- 2
+std.dev &lt;- 5
+
+x &lt;- rt(n = 150, df = 3)
+* y &lt;- beta0 + beta1*x + rnorm(n=150, mean = 0, sd=std.dev) 
+```
+
+![](historias_con_impacto_NCSU_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+---
+
+Simulating data from a SLR when the sample size `\(N = 50, 200, 500\)`
+
+![](historias_con_impacto_NCSU_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;![](historias_con_impacto_NCSU_files/figure-html/unnamed-chunk-5-2.png)&lt;!-- --&gt;![](historias_con_impacto_NCSU_files/figure-html/unnamed-chunk-5-3.png)&lt;!-- --&gt;
+
+
+---
+Simulating data from a SLR when the sample size of `\(N = 200\)` and parameter values of `\(\beta_0 = 1, \beta_1 = -2, \sigma=5\)`
+
+
+![](historias_con_impacto_NCSU_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;![](historias_con_impacto_NCSU_files/figure-html/unnamed-chunk-6-2.png)&lt;!-- --&gt;![](historias_con_impacto_NCSU_files/figure-html/unnamed-chunk-6-3.png)&lt;!-- --&gt;
+
+
+---
+
+# Generalized Linear Model: Poisson Log-Linear Model
+
+Here, we imply that `\(f(y|x) \sim Poisson(\lambda_x)\)`. 
+
+
+$$ y|x \sim Poisson (\lambda) $$ 
+
+$$ log(\lambda) = \beta_0 + \beta_1 x $$
+
+
+A special property of the Poisson distribution is that `\(E(y|x) = Var(y|x) = \lambda_x\)`. 
+
+**Poisson distribution with `\(\lambda = 5\)`:** 
+
+![](historias_con_impacto_NCSU_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+
+
+---
+
+# The story of the Poisson Log-Linear Model
+
+
+For every value of `\(x\)`, we expect to see observations `\(y\)` that are generated according to the Poisson distribution with `\(\lambda_x = e^{\beta_0 + \beta_1 x}\)`. 
+
+![](historias_con_impacto_NCSU_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+
+---
+
+# Simulating from a Poisson Log-Linear Model
+
+
+```r
+pbeta0 &lt;- 0.1
+pbeta1 &lt;- 0.2
+
+px &lt;- runif(n=100, min=-5, max=5)
+xlambda &lt;- exp(pbeta0 + pbeta1*px)
+py &lt;- rpois(n=100, lambda=xlambda)
+```
+
+![](historias_con_impacto_NCSU_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+---
+
+# Hierarchical Model
+
+**One example**
+
+`$$y_{ij} \sim Poisson(\lambda_{ij})$$`
+
+`$$log(\lambda_{ij}) = \beta_{0,i} + \beta_{1,i} x_{ij}$$`
+
+`$$\beta_{0,i} \overset{iid}{\sim} N(\mu_0, \sigma_0^2)$$`
+
+`$$\beta_{1,i} \overset{iid}{\sim} N(\mu_1, \sigma_1^2)$$`
+
+### Story
+
+Similar to the Poisson Log-Linear Model from before, but now we assume that some parameters vary across groups. However(!), the parameters `\(\beta_{0,i}\)` and `\(\beta_{1,i}\)` are linked across groups!
+
+
+---
+
+# Simulating from a Hierarchical Model
+
+
+
+```r
+## 10 individuals
+pb0h &lt;- rnorm(n = 10, mean = 0.1, sd = 0.1)
+pb1h &lt;- rnorm(n=10, mean=0.2, sd=0.1)
+
+pxh &lt;- matrix(data=NA, nrow=10, ncol=20) 
+pyh &lt;- matrix(data=NA, nrow=10, ncol=20)
+for(j in 1:10){
+  pxh[j,] &lt;- runif(n=20, min=-5, max=5)
+  pyh[j,] &lt;- rpois(n=20, lambda=exp(pb0h[j] + pb1h[j]*pxh[j,]))
+}
+```
+
+![](historias_con_impacto_NCSU_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+
+
+
+---
+
+# Simulation -- The Underused Tool
+
+
+Advantages of simulation:
+
+- No data needed. 
+
+- We can learn about what are models actually do, e.g. how different parameter values affect the outcome. 
+
+- We build intuition about what different models imply. 
+
+--
+
+If after simulation it's hard to understand what these parameters mean in the overall context...
+
+--
+
+.center[
+**we can always go back and do more simulations!**
+]
+
+--
+
+
+
+*It'll be hard to interpret the parameters if we don't have a good idea of what they actually mean for our process.*
+
+
+---
+class: inverse, top
+# Choosing candidate models
+
+
+.center[
+## **Remember: every model tells a story.** 
+]
+
+--
+
+.center[
+## **How does the models' story tie into the story we want to tell? ** 
+]
+
+--
+
+.center[
+## **When we simulate data from various models, does it look like the data we have?** 
+]
+
+
+---
+class: center, inverse
+
+# Fitting models to data
+
+It's one thing to think about the wonderful stories that models to tell. And another thing to face the reality of trying to fit these models to data. 
+
+--
+
+**Some models are well-behaved with small data sets...**
+
+&lt;img src=https://media.giphy.com/media/3ndAvMC5LFPNMCzq7m/giphy.gif width="170" height="150"/&gt;
+
+
+--
+
+**Some models are data hungry...**
+
+&lt;img src = https://media.giphy.com/media/xT0xeMA62E1XIlup68/giphy.gif width="200" height="150" /&gt;
+
+
+
+---
+class: top
+
+# Back to Simulation
+
+Even if your story matches perfectly with a model's story...a fairytale ending isn't certain. 
+
+--
+
+.center[
+Models need a certain amount of information before they reveal secrets about the data...
+]
+
+.center[
+_(in proper statistical terms: `estimability/identifiability`)_
+]
+
+--
+
+______________________________
+
+
+**Good practice:** 
+
+- Put together information about your data: 
+
+.center[
+*What's the sample size?* *How many replicates are there?* *Number of individuals?*
+]
+
+--
+
+- Simulate data from the model that matches your data specifics
+
+--
+
+- Fit the model to the simulated data. What do you see? How much uncertainty is there in the parameter estimates? 
+
+
+---
+class: top
+
+#Fitting a Model
+
+
+Once we fit a model to our data, but not before constructing uncertainty intervals, we begin to examine the patterns that are revealed. 
+
+--
+
+- Can we interpret the parameters? 
+
+--
+
+- Are the results inline with what was expected? 
+
+--
+
+- _I'm sidestepping the idea of 'significance' on purpose._ In favor of...
+
+--
+
+- How do the values of my parameters jointly tell the story? 
+
+--
+
+
+.footnote[
+For Bayesian inference, check out [Stan](https://mc-stan.org/). 
+]
+
+---
+
+#Assessing/Interpreting a Model
+
+Mostly done in the context of 'posterior predictive checks' when conducting Bayesian inference, this idea falls into the class of simulation-based model assessment. 
+
+
+`Simulate data from the fitted model`: `\(\mathbf{y}_{rep}^*\)` 
+
+- Draw values of the parameters `\(\boldsymbol{\theta}^*\)` from their distributions 
+
+- Plug in `\(\boldsymbol{\theta}^*\)` into the model to simulate values of `\(\mathbf{y}_{rep}^*\)` 
+
+- Repeat above steps multiple times (say, 100 times)
+
+- Compare `\(\mathbf{y}_{rep}^*\)`  to `\(\mathbf{y}\)`
+
+**The key idea is: if our model is the _data generating mechanism_, could it generate data like ours?**
+
+Of course, there are still residuals and other traditional measures of model evaluation. 
+
+
+---
+#Interpeting our Model Results
+
+We need to make sure we interpret the results in the context of: 
+
+--
+
+- How we quantified the story we want to tell. 
+
+--
+
+- What information was collected. 
+
+--
+
+- `What information was NOT collected`
+
+--
+
+- What kinds of data can our model produce? And what does that imply about the real world? 
+
+---
+class: top
+
+#Historias con Impacto
+
+--
+
+.center[
+**The biggest impact we can have is when we make `discoveries` about the world we live in.** 
+]
+
+
+&lt;img src="realworld_abstract_chart.png"&gt;
+
+
+
+---
+# Historias con Impacto
+
+Something to always keep in mind: `the stories we tell come from our perspectives, shaped by our experiences and driven by our personal choices.` Being open and transparent about this is part of telling an impactful story.  
+
+
+--
+
+.pull-left[
+
+`Reproducible research:` 
+
+- Can anyone reproduce your workflow? 
+
+- Do the results reproduce? 
+
+- [RMarkdown](https://rmarkdown.rstudio.com/)
+
+
+
+`Data availability:` 
+
+- Making the data available
+
+
+]
+
+--
+
+.pull-right[
+
+`Research that's accessible to everyone:` 
+
+- Why did the story turn out the way it did? 
+
+- What was tried? 
+
+- What failed? 
+
+- Allowing insights into your research process. 
+
+]
+
+---
+
+class: center, middle
+
+# ¡Gracias!
+
+&lt;img src="twitterhandle.png" width="250", height="100"&gt; 
+
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
